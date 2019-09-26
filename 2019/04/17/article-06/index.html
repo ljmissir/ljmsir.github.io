@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <title>
     
-      今日随笔 | 灬心之逆鳞灬
+      Js事件循环机制 | 灬心之逆鳞灬
     
   </title>
   <meta name="author" content="Ljmissir">
@@ -105,7 +105,7 @@
 				<!-- Page title -->
 				<p>
 					
-						当前文章&nbsp;:&nbsp;《今日随笔》
+						当前文章&nbsp;:&nbsp;《Js事件循环机制》
 					
 				</p>
 				<!-- Progress bar -->
@@ -253,8 +253,8 @@
 	
 	<div class="article-title">
 		
-	<a href="/2019/04/04/article-01/" itemprop="url">
-		今日随笔
+	<a href="/2019/04/17/article-06/" itemprop="url">
+		Js事件循环机制
 	</a>
 
 	</div>
@@ -263,17 +263,17 @@
 		<span>
 			
 	发布于
-	<a href="/2019/04/04/article-01/" itemprop="url">
-		<time datetime="2019-04-04T03:40:07.000Z" itemprop="datePublished">
-	  		2019-04-04
+	<a href="/2019/04/17/article-06/" itemprop="url">
+		<time datetime="2019-04-17T11:14:19.000Z" itemprop="datePublished">
+	  		2019-04-17
 	  </time>
 	</a> 
 
 	/
 	更新于
-	<a href="/2019/04/04/article-01/" itemprop="url">
-		<time datetime="2019-04-04T03:40:07.000Z" itemprop="dateUpdated">
-	  		2019-04-05
+	<a href="/2019/04/17/article-06/" itemprop="url">
+		<time datetime="2019-04-17T11:14:19.000Z" itemprop="dateUpdated">
+	  		2019-04-27
 	  </time>
 	</a> 	
 
@@ -283,8 +283,8 @@
 			<i class="fa fa-tags"></i>
 			
 	
-		<a href="/tags/随笔-日记-感想-生活/" class=" ">
-			随笔 日记 感想 生活
+		<a href="/tags/js/" class=" ">
+			js
 		</a>
 	
 		
@@ -292,7 +292,7 @@
 		/
 		
 
-    <span class="leancloud_visitors" id="/2019/04/04/article-01/_visitors" data-url="/2019/04/04/article-01/" data-title="今日随笔">
+    <span class="leancloud_visitors" id="/2019/04/17/article-06/_visitors" data-url="/2019/04/17/article-06/" data-title="Js事件循环机制">
         热度
         <i class="leancloud_visitors_count" id="leancloud_visitors_count">0</i>
     </span>
@@ -301,7 +301,7 @@
 
 
 
-    <span class="leancloud_likes" id="/2019/04/04/article-01/_likes" data-url="/2019/04/04/article-01/" data-title="今日随笔" rel="unlike">
+    <span class="leancloud_likes" id="/2019/04/17/article-06/_likes" data-url="/2019/04/17/article-06/" data-title="Js事件循环机制" rel="unlike">
         喜欢
         <i class="fa fa-heart"></i>
         <i class="leancloud_likes_count" id="leancloud_likes_count">0</i>
@@ -310,11 +310,37 @@
 	</div>
 
 	<div class="article-content" id="article-content">
-		<p>　　记忆中，在2017年的时候，我也弄过一个个人博客网站，那时候在华大基因上班，工作没那么饱和，有很多业余的时间去瞎折腾，所以就去阿里云买了个个域名和服务器，寻思着自己搭建一个别具一格的博客网站。奈何，折腾了一段时间，从购买域名再到工信部备案域名，前前后后折腾了近一个月的时间，而我那会，好像就买了半年的有效期。然后再去写自己的博客网站，等写完一看，真是惨不忍睹，果然印证了那句话，开发人员的审美，你懂的！再就是没什么心思去折腾这一块了，就这样闲置了很久，直到域名到期，也没更新几篇文章，真是不作死就不会死。<br>　　其实之前也有看到别人用Hexo来快速搭建自己的博客网站，还能挂到github上，关键是不花钱，而且还有很多花里胡哨的主题随你挑选，专治各种不服，真的是特别适合我这种想整点事，又缺乏设计细胞的人，简直不要太爽。<br>　　沉寂许久之后，我还是选择在github上来写文章博客，之前也尝试过其他平台的博客，感觉就是不好用，依托在平台上，还时不时弹出烦人的广告。所以，飘到这来折腾一番，这一折腾，发现还真不错，直接通过命令行来生成文章模板，标准的Markdown编辑，而且还会自动把文章按日期来分类，省去了很多时间。闲暇时间，用来写写随笔、日记、相册、学术文章等都是个不错的选择。</p>
+		<blockquote>
+<p>概述</p>
+</blockquote>
+<h4 id="事件循环机制"><a href="#事件循环机制" class="headerlink" title="事件循环机制"></a>事件循环机制</h4><p>　　js的事件循环机制，在我理解起来就是执行上下文，对函数的出栈和入栈的一个过程。js的一大特点就是单线程，试想一下，如果js是多线程语言，同时存在两个线程，一个线程是在某个Dom上添加一个节点，而另一个线程却是删除节点，那么这样浏览器就会产生错乱，而我们关心的js事件循环机制就是由js单线程的特质决定的。<br>　　先看下大致流程<br><img src="/img/img-05.png"><br>　　在上图过程中：<br>1、js的引擎 逐句的执行js代码，形成执行栈<br>2、当执行栈遇到异步代码时候，会指给对应的异步进程进行处理（WEB API）<br>3、等待异步任务有了运行结果，js的运行环境就会在对应的任务队列中push事件任务，等待着被js引擎执行，而当异步没有产生回调，那他就不会push到任何任务队列中去。<br>4、执行栈执行任务完毕，便会查询任务队列，如果不为空，则读取一个任务推入主线程处理<br>5、重复第4个步骤，直到任务队列为空，这样的过程就是事件循环。<br>　　涉及到的异步进程：</p>
+<ul>
+<li>Dom事件，是由浏览器的Dom模块处理，达到触发条件时，在任务队列中添加相应的回调函数</li>
+<li>定时器setTimeout等，是由浏览器的Timer模块处理，达到设置的时间点时，在任务队列中添加回调</li>
+<li>ajax请求，是由浏览器的Network模块处理，等待请求返回，在任务队列中添加回调<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><blockquote>
+<p>栈（stack）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="/img/img-06.png"><br>知道了栈是一种后进先出的数据结构后，我们运行一下代码，并模拟它的入栈和出栈过程<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fun2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    fun2();</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">fun1();</span><br></pre></td></tr></table></figure></p>
+<p>以上出入栈如下图所示<br><img src="/img/img-07.png"></p>
+<h4 id="任务队列"><a href="#任务队列" class="headerlink" title="任务队列"></a>任务队列</h4><p>　　js中存在着多个任务队列，并且不同的任务队列之间优先级不同，优先级高的先被获取。同一队列中按照队列顺序被取用 任务队列分为两种类型</p>
+<ul>
+<li>macrotask queue（宏任务队列）：script（整体代码），setTimeout， setInterval，setImmediate，I/O，UI rendering</li>
+<li>microtask queue（微任务队列）：process.nextTick， Promises（这里指浏览器实现的原生 Promise）， MutationObserver</li>
+</ul>
+<p>两者的区别：</p>
+<ul>
+<li>macrotask queue：存在多个，存在优先级</li>
+<li>microtask queue：仅一个，按照队列顺序执行</li>
+</ul>
+<p>　　事实上，事件循环的顺序，决定了JavaScript代码的执行顺序。执行时从script(整体代码)开始第一次循环，之后全局上下文进入函数调用栈，直到执行栈清空，然后开始执行所有的microtask,当所有可执行的micro-task执行完毕之后。循环再次从macro-task开始，找到其中一个任务队列执行完毕，然后再执行所有的micro-task，这样一直循环下去。事件循环每次只会入栈一个 macrotask ，主线程执行完该任务后又会先检查 microtasks 队列并完成里面的所有任务后再执行 macrotask。</p>
+<p>　　我们举个例子验证下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'-----start-----'</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout1-macroTask'</span>)</span><br><span class="line">&#125;,<span class="number">1000</span>)</span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Promise1-microTask'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Promise2-microTask'</span>)</span><br><span class="line">&#125;);</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout2-macroTask'</span>)</span><br><span class="line">&#125;,<span class="number">100</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'-----end-----'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>　　具体过程，我们稍微概括下：<br>1、遇到console.log,立即执行，输出“—–start—–”<br>2、setTimeout,交给异步模块处理，执行完后，回调放入macrotask queue中<br>3、遇到Promise，执行then部分，回调放入microtask queue<br>4、遇到Promise，执行then部分，回调放入microtask queue，此时的microtask queue队列中就有两个事件了<br>5、还是遇到setTimeout,同样交给异步处理模块，执行完后，回调同样是一个macrotask任务，但因为setTimeout2的时间要比setTimeout1的短，因此先输出setTimeout2<br>6、再次遇到console.log,依旧立即执行，输出“—–end—–”<br>7、执行结束</p>
 	
 	</div>
 	
-	<div id="current-post-cover" data-scr="/img/qin-01.png"></div>
+	<div id="current-post-cover" data-scr="https://user-gold-cdn.xitu.io/2019/4/16/16a253e404a656b3?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1"></div>
 
 	<!-- relate post, comment...-->
 	<div class="investment-container">
@@ -328,10 +354,14 @@
 	<span>
 		<a href="javascript: window.scrollTo(0, 0);">返回顶部</a>
 		
-			<a href="/2019/04/05/article-02/" title="清明踏青" rel="prev">
+			<a href="/2019/09/26/article-07/" title="article-07" rel="prev">
 				&laquo;上一篇
 			</a>
 		
+		
+			<a href="/2019/04/09/article-05/" title="嗨，你真的懂this吗？" rel="next">
+				下一篇&raquo;
+			</a>
 			
 	</span>
       		
@@ -358,25 +388,6 @@
 
 					<a href="/2019/09/26/article-07/" title="article-07">				
 						<img src="/img/cart_cover.jpg" class="relateImg" alt="article-07">
-					</a>
-				</li>											
-		
-		
-				<li>
-					<div>
-						<a href="/2019/04/17/article-06/" title="Js事件循环机制">
-							Js事件循环机制
-						</a>
-						<p>
-							
-概述
-
-事件循环机制　　js的事件循环机制，在我理解起来就是执行上下文，对函数的出栈和入栈的一个过程。js的一大特点就是单线程，试想一下，如果js是多线程语言，同时存在两个线程，一个线程是在某个Dom上添加一个节点，而另一个线程却是...
-						</p>
-					</div>
-
-					<a href="/2019/04/17/article-06/" title="Js事件循环机制">				
-						<img src="https://user-gold-cdn.xitu.io/2019/4/16/16a253e404a656b3?imageView2/1/w/1304/h/734/q/85/format/webp/interlace/1" class="relateImg" alt="Js事件循环机制">
 					</a>
 				</li>											
 		
@@ -448,6 +459,22 @@ JavaScript是一种面向对象的程序设计语言，但是JS本身是没有�
 
 					<a href="/2019/04/05/article-02/" title="清明踏青">				
 						<img src="/img/wutongshan.jpg" class="relateImg" alt="清明踏青">
+					</a>
+				</li>											
+		
+		
+				<li>
+					<div>
+						<a href="/2019/04/04/article-01/" title="今日随笔">
+							今日随笔
+						</a>
+						<p>
+							　　记忆中，在2017年的时候，我也弄过一个个人博客网站，那时候在华大基因上班，工作没那么饱和，有很多业余的时间去瞎折腾，所以就去阿里云买了个个域名和服务器，寻思着自己搭建一个别具一格的博客网站。奈何，折腾了一段时间，从购买域名再到工...
+						</p>
+					</div>
+
+					<a href="/2019/04/04/article-01/" title="今日随笔">				
+						<img src="/img/qin-01.png" class="relateImg" alt="今日随笔">
 					</a>
 				</li>											
 		
@@ -542,6 +569,13 @@ JavaScript是一种面向对象的程序设计语言，但是JS本身是没有�
 		插件作者：KELEN
 		插件来源: https://github.com/KELEN/katelog
 -->
+
+		
+
+		<div class="k-catelog-list" id="catelog-list" data-title="文章目录"></div>
+		<script src="/plugin/toc/katelog.min.js"></script>
+
+		
 	
 		</main>
 		
